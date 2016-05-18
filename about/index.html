@@ -67,13 +67,6 @@
                     </li>
                 
                     <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            读书
-                        </a>
-                    </li>
-                
-                    <li>
                         <a class="menu-about " href="/about" >
                             <i class="fa fa-user "></i>
                             关于
@@ -119,13 +112,6 @@
             </li>
         
             <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    读书
-                </a>
-            </li>
-        
-            <li class="no-padding">
                 <a class="waves-effect menu-about " href="/about" >
                     <i class="fa fa-user "></i>
                     关于
@@ -159,13 +145,31 @@
          <div class="card">
            <div class="card-content">
              <span class="card-title">关于wo</span>
-             <p>邱承运(Qiucy)</p>
-             <p>华中科技大学电信学院 互联网中心</p>
-             <img class="activator" src="images/office.jpg">
+             <div class="row">
+                 <div class="col s1">
+                     <img src="http://q.qlogo.cn/qqapp/100229475/1FF2AE630A67FD186293E478CDE15065/100" alt="" class="circle responsive-img">
+                 </div>
+                 <div class="col s11">
+                     <p>邱承运(Qiucy)</p>
+                     <p>华中科技大学电信学院 互联网中心</p>
+                 </div>
+               </div>
            </div>
            <div class="card-action">
-             <a href="#">邱承运</a>
-             <a href="#">Qiucy</a>
+               
+    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+        <i class="fa fa-2x fa-weibo"></i>
+    </a>
+
+    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+        <i class="fa fa-2x fa-github"></i>
+    </a>
+
+    <a class="social-link" href="/atom.xml" target="_blank">
+        <i class="fa fa-2x fa-rss"></i>
+    </a>
+
+
            </div>
          </div>
        </div>
@@ -190,30 +194,25 @@
             <div class="social-group col m3 s12">
                 <h5 class="white-text">社交</h5>
                 
-                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
-                        <i class="fa fa-2x fa-weibo"></i>
-                    </a>
-                
-                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
-                        <i class="fa fa-2x fa-github"></i>
-                    </a>
-                
-                    <a class="social-link" href="/atom.xml" target="_blank">
-                        <i class="fa fa-2x fa-rss"></i>
-                    </a>
-                
+    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+        <i class="fa fa-2x fa-weibo"></i>
+    </a>
+
+    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+        <i class="fa fa-2x fa-github"></i>
+    </a>
+
+    <a class="social-link" href="/atom.xml" target="_blank">
+        <i class="fa fa-2x fa-rss"></i>
+    </a>
+
+
             </div>
             
-            
+
             
             <div class="col m9 s12">
                 <h5 class="white-text">友情链接</h5>
-                
-                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
-                
-                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
-                
-                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
                 
             </div>
             
@@ -296,7 +295,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading,.menu-about').append('<span class="new badge pink"></span>');
+        $('').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
