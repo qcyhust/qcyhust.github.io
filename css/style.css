@@ -44,6 +44,7 @@ ol {
 ul.tabs,
 ol.tabs {
   padding-left: 0;
+  overflow-x: hidden;
 }
 ul,
 ul li {
