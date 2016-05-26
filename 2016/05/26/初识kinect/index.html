@@ -192,9 +192,9 @@ Kinect SDK，只需将kinect v2.0设备与P">
 </li>
 </ul>
 <p>图中是<code>sample</code>运行的效果截图，从图中可以看出，从官方<code>SDK</code>的接口中可以获得的数据有人脸框在彩色帧中的位置、五个特征点的位置、头部偏转角以及面部表情分析等等，用于项目中的有效部分是人脸框位置和特征点位置以及头部偏转角。</p>
-<p><img src="../../../../img/qcy.png" alt=""></p>
+<p><img src="../../../../images/qcy.png" alt=""></p>
 <p><code>SDK</code>中使用的是<code>D2D</code>和<code>Windows</code>编程接口进行面部渲染，我们为了后续图像处理的方便性，改成了<code>OpenCV</code>进行相关面部信息显示，并将<code>kinect</code>数据获取部分包装成一个类来方便自己使用，测试效果如下图：</p>
-<p><img src="../../../../img/qcy1.png" alt=""></p>
+<p><img src="../../../../images/qcy1.png" alt=""></p>
 <ul>
 <li><strong>下一步目标</strong><ul>
 <li>获取深度帧中的人脸位置信息</li>
