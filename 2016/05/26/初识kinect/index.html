@@ -7,13 +7,20 @@
 
     
 
-    <title>3D Face Group的小组博客</title>
+    <title>2016.05.26 | 3D Face Group的小组博客</title>
     <meta name="author" content="彭敏 邱承运 刘贵 黄世杰">
+    
+    <meta name="description" content="2016/05/18:本周主要参考kinect官方SDK自带的sample，对代码进行整合改造，获取自己需要的部分。
+
+环境搭建
+
+OpenCV和CMake的平台搭建，主要参考博客Windows下利用CMake和VS2013编译OpenCV
+Kinect SDK，只需将kinect v2.0设备与P">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="2016.05.26"/>
     <meta property="og:site_name" content="3D Face Group"/>
 
     
@@ -137,143 +144,101 @@
 </nav>
 
     <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
         
+            
 
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="../images/1.jpg">
-               <div class="caption center-align">
-                 <h4>3D Face Reconstruction!</h3>
-                 <h5 class="light grey-text text-lighten-3">Interesting</h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="../images/2.jpg">
-               <div class="caption left-align">
-                 <h4>3D Face Reconstruction</h3>
-                 <h5 class="light grey-text text-lighten-3">Interesting.</h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="../images/3.jpg">
-               <div class="caption right-align">
-                 <h4>3D Face Reconstruction</h3>
-                 <h5 class="light grey-text text-lighten-3">Interesting.</h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
- </div>
+        
+        
+        
+    </div>
+</nav>
 
-
-
-<div id="article-list" class="container main-container">
-    
-        <article class="row simple-article">
-    <div class="col s12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1><a href="/2016/05/26/初识kinect/">2016.05.26</a></h1>
-    
-
-
-                </div>
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
                 
-                <time datetime="2016-05-26T08:49:08.000Z"><a href="/2016/05/26/初识kinect/">2016-05-26</a></time>
+    
+        <h1>2016.05.26</h1>
+    
 
-                
 
-                
-                
             </div>
+            <time datetime="2016-05-26T08:49:08.000Z"><a href="/2016/05/26/初识kinect/">2016-05-26</a></time>
+
             
-            
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2016-05-18"><span class="section table-of-contents-text">2016/05/18:</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <h2 id="2016-05-18"><a href="#2016-05-18" class="headerlink" title="2016/05/18:"></a><strong>2016/05/18</strong>:</h2><p>本周主要参考<code>kinect</code>官方<code>SDK</code>自带的<code>sample</code>，对代码进行整合改造，获取自己需要的部分。</p>
+<ul>
+<li><p><strong>环境搭建</strong></p>
+<ul>
+<li><code>OpenCV</code>和<code>CMake</code>的平台搭建，主要参考博客<a href="http://www.nmtree.net/2014/03/19/windows_build-opencv-with-cmake-and-vs2013.html" target="_blank" rel="external">Windows下利用CMake和VS2013编译OpenCV</a></li>
+<li><code>Kinect SDK</code>，只需将<code>kinect v2.0</code>设备与<code>PC</code>连接，即可自行安装<code>SDK</code>，不过需注意，<code>kinect v2.0</code>需要的硬件条件是<code>Windows8</code>以上的系统以及<code>USB3.0</code>接口</li>
+</ul>
+</li>
+<li><p><strong>效果展示</strong></p>
+</li>
+</ul>
+<p>图中是<code>sample</code>运行的效果截图，从图中可以看出，从官方<code>SDK</code>的接口中可以获得的数据有人脸框在彩色帧中的位置、五个特征点的位置、头部偏转角以及面部表情分析等等，用于项目中的有效部分是人脸框位置和特征点位置以及头部偏转角。</p>
+<p><img src="../../../../img/qcy.png" alt=""></p>
+<p><code>SDK</code>中使用的是<code>D2D</code>和<code>Windows</code>编程接口进行面部渲染，我们为了后续图像处理的方便性，改成了<code>OpenCV</code>进行相关面部信息显示，并将<code>kinect</code>数据获取部分包装成一个类来方便自己使用，测试效果如下图：</p>
+<p><img src="../../../../img/qcy1.png" alt=""></p>
+<ul>
+<li><strong>下一步目标</strong><ul>
+<li>获取深度帧中的人脸位置信息</li>
+<li>人脸矫正</li>
+</ul>
+</li>
+</ul>
+
+            </div>
         </div>
     </div>
 </article>
 
-    
-        <article class="row simple-article">
-    <div class="col s12">
-        <div class="card hoverable">
+
+
+
+    <section id="comment">
+        <div class="card">
             <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1><a href="/2016/05/18/3DFaceReconstruction/">3D Face Reconstruction</a></h1>
-    
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="初识kinect" data-title="2016.05.26" data-url="http://yoursite.com/2016/05/26/初识kinect/"></div>
 
-
-                </div>
-                
-                <time datetime="2016-05-18T08:42:30.000Z"><a href="/2016/05/18/3DFaceReconstruction/">2016-05-18</a></time>
-
-                
-
-                
-                
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'qcyhust'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
             </div>
-            
-            
         </div>
-    </div>
-</article>
-
-    
-        <article class="row simple-article">
-    <div class="col s12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1><a href="/2016/02/23/hello-world/">Hello World</a></h1>
-    
+    </section>
 
 
-                </div>
-                
-                <time datetime="2016-02-23T07:59:09.957Z"><a href="/2016/02/23/hello-world/">2016-02-23</a></time>
-
-                
-
-                
-                
-            </div>
-            
-            
-        </div>
-    </div>
-</article>
-
-    
-    
-    <ul class="pagination center-align">
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="active green"><a href="/">1</a></li>
-    
-    
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
 
 </div>
 
