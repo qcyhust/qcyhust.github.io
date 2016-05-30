@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>iOS从图库或相机获得图片 | 3D Face Group的小组博客</title>
+    <meta name="author" content="彭敏 邱承运 刘贵 黄世杰">
+    
+    <meta name="description" content="前言一款App很有可能需要访问系统的图库（照片）或者通过相机来获取图片，比如更换用户头像等等。效果如图👇
+
+下面来看看如何实现">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="iOS从图库或相机获得图片"/>
+    <meta property="og:site_name" content="3D Face Group"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="3D Face Group" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-med-and-down">3D Face Group</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://qcyhust.github.io/images/qcy.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">Qiucy</p>
+                        <p class="desc">Web前端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/iOS/">
+                    iOS <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/iOS/">iOS</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>iOS从图库或相机获得图片</h1>
+    
+
+
+            </div>
+            <time datetime="2016-03-24T13:23:18.000Z"><a href="/2016/03/24/iOS-camera-picture-album/">2016-03-24</a></time>
+
+            
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前言"><span class="section table-of-contents-text">前言</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#查看访问权限"><span class="section table-of-contents-text">查看访问权限</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#UIImagePickerController"><span class="section table-of-contents-text">UIImagePickerController</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#P-S"><span class="section table-of-contents-text">P.S</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#参考"><span class="section table-of-contents-text">参考</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一款App很有可能需要访问系统的图库（照片）或者通过相机来获取图片，比如更换用户头像等等。效果如图👇</p>
+<p><img src="../../../../images/ios1.gif" alt="camera demo"></p>
+<p>下面来看看如何实现</p>
+<a id="more"></a>
+<h2 id="查看访问权限"><a href="#查看访问权限" class="headerlink" title="查看访问权限"></a>查看访问权限</h2><p>App在第一次访问系统照片或者相机时，通常需要询问是否有权限去access相片图库或者使用相机。可以通过下面代码得知目前该app的权限👇<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import AVFoundation;&#10;@import Photos;&#10;&#10;// &#26816;&#26597;&#20351;&#29992;&#30456;&#29255;&#30340;&#26435;&#38480;&#65292; YES&#20026;&#21487;&#20197;&#35775;&#38382;&#65292;NO&#20026;&#19981;&#33021;&#20351;&#29992;&#10;+ (BOOL)checkPhotoLibraryAuthorizationStatus &#123;&#10;    if ([PHPhotoLibrary responseToSelector:@selector(authorizationStatus)]) &#123;&#10;        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus]; // &#33719;&#21462;&#24403;&#21069;app&#23545;&#30456;&#29255;&#30340;&#26435;&#38480;&#10;        if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) &#123; // &#33509;&#24403;&#21069;&#26435;&#38480;&#20026;&#19981;&#20801;&#35768;&#20351;&#29992;&#10;            [self showSettingAlertStr:@&#34;&#35831;&#22312;iPhone&#30340;&#8220;&#35774;&#32622;-&#62;&#38544;&#31169;-&#62;&#29031;&#29255;&#8221;&#20013;&#25171;&#24320;&#26412;&#24212;&#29992;&#30340;&#35775;&#38382;&#26435;&#38480;&#34;]; // &#25552;&#31034;&#29992;&#25143;&#21435;**&#35774;&#32622;**&#20013;&#26356;&#25913;&#26435;&#38480;&#10;            return NO;&#10;        &#125;&#10;    &#125;&#10;&#10;    return YES;&#10;&#125;&#10;&#10;// &#26816;&#26597;&#20351;&#29992;&#30456;&#26426;&#30340;&#26435;&#38480;&#65292; YES&#20026;&#21487;&#20197;&#20351;&#29992;&#65292; NO&#20026;&#19981;&#33021;&#35775;&#38382;&#10;+ (BOOL)checkCameraAuthorizationStatus &#123;&#10;    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) &#123; // &#21028;&#26029;&#35813;&#35774;&#22791;&#26159;&#21542;&#25903;&#25345;&#25293;&#29031;&#10;        alert(@&#34;&#35813;&#35774;&#22791;&#19981;&#33021;&#25293;&#29031;&#34;)&#65307;&#10;        return NO;&#10;    &#125;&#10;&#10;    if ([AVCaptureDevice responseToSelector:@selector(authorizationStatusForMediaType:)]) &#123;&#10;        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]; // &#33719;&#21462;&#24403;&#21069;app&#23545;&#30456;&#26426;&#30340;&#26435;&#38480;&#10;        if (status == AVAuthorizationStatusDenied || status == AVAuthorizationStatusRestricted) &#123; // &#33509;&#24403;&#21069;&#26435;&#38480;&#20026;&#19981;&#20801;&#35768;&#20351;&#29992;&#10;            [self showSettingAlertStr:@&#34;&#35831;&#22312;iPhone&#30340;&#8220;&#35774;&#32622;-&#62;&#38544;&#31169;-&#62;&#30456;&#26426;&#8221;&#20013;&#25171;&#24320;&#26412;&#24212;&#29992;&#30340;&#35775;&#38382;&#26435;&#38480;&#34;]; // &#25552;&#31034;&#29992;&#25143;&#21435;**&#35774;&#32622;**&#20013;&#26356;&#25913;&#26435;&#38480;&#10;            return NO;&#10;        &#125;&#10;    &#125;&#10;&#10;    return YES;&#10;&#125;&#10;&#10;// &#25552;&#31034;&#29992;&#25143;&#21435;&#35774;&#32622;&#20013;&#26356;&#25913;&#26435;&#38480;&#10;+ (void)showSettingAlertStr:(NSString *)tipStr &#123;&#10;    if (floor(NSFoundationVersionNumber) &#62; NSFoundationVersionNumber_iOS_7_1) &#123; // iOS7.1&#20043;&#21518;&#30340;&#21487;&#20197;&#30452;&#25509;&#36827;&#20837;&#35774;&#32622;&#10;        // &#26032;&#24314;&#25552;&#31034;&#24377;&#26694;&#10;        UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:@&#34;&#25552;&#31034;&#34; message:tipStr];&#10;        [alertView bk_setCancelButtonWithTitle:@&#34;&#21462;&#28040;&#34; handler:nil];&#10;        [alertView bk_addButtonWithTitle:@&#34;&#34; handler:nil];&#10;        [alertView bk_setDidDismissBlock:^(UIAlertView *alertView, NSInteger buttonIndex) &#123;&#10;            if (buttonIndex == 1) &#123;&#10;                // &#36339;&#36716;&#21040;&#35774;&#32622;&#30028;&#38754;&#36827;&#34892;&#35774;&#32622;&#10;                UIApplication *app = [UIApplication sharedApplication];&#10;                NSURL *settingsURL = [NSURL urlWithString:UIApplicationOpenSettingsURLString];&#10;                if ([app canOpenURL:settingsURL]) &#123;&#10;                    [app openURL:settingsURL];&#10;                &#125;&#10;            &#125;&#10;        &#125;];&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下👇<br><img src="../../../../images/ios2.gif" alt="autorization demo"></p>
+<h2 id="UIImagePickerController"><a href="#UIImagePickerController" class="headerlink" title="UIImagePickerController"></a>UIImagePickerController</h2><p><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIImagePickerController_Class/" target="_blank" rel="external">UIImagePickerController</a>是系统提供的用来拍照或者使用系统相片的用户界面。</p>
+<p>使用UIImagePickerController需注意：</p>
+<ol>
+<li>sourceType属性: 该属性说明UIImagePickerController会如何显示界面。如果sourceType为UIImagePickerControllerSourceTypeCamera，那么系统会呈现一个拍照的界面；如果sourceType为UIImagePickerControllerSourceTypeSavedPhotosAlbum，那么系统会呈现一个选取系统照片的界面</li>
+<li>检查app是否有权限使用相机或者系统相片</li>
+</ol>
+<p>下面来看看使用示例👇<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (void)showImagePickerController &#123;&#10;    UIImagePickerController *pickerController = [UIImagePickerController alloc] init]; // &#21021;&#22987;&#21270;&#10;    pickerController.delegate = self;&#10;    pickerController.allowsEditing = YES; //&#20801;&#35768;&#29992;&#25143;&#32534;&#36753;&#25293;&#25668;&#30340;&#22270;&#29255;&#25110;&#32773;&#36873;&#21462;&#30340;&#30456;&#20876;&#30340;&#22270;&#29255;&#10;    if (camera) &#123; // &#36873;&#25321;&#30456;&#26426;&#10;        if (![Helper checkCameraAuthorizationStatus]) &#123; // &#26681;&#25454;&#19978;&#25991;&#30340;&#20989;&#25968;&#65292;&#21028;&#26029;&#26159;&#21542;&#26377;&#20351;&#29992;&#30456;&#26426;&#30340;&#26435;&#38480;&#10;            return;&#10;        &#125;&#10;        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera; // &#25351;&#23450;sourceType&#20026;Camera&#65292;pickerController&#23558;&#20250;&#25552;&#20379;&#19968;&#20010;&#25293;&#25668;&#30340;&#30028;&#38754;&#10;    &#125; else &#123; // &#36873;&#25321;&#31995;&#32479;&#22270;&#24211;&#10;        if (![Helper checkPhotoLibraryAuthorizationStatus]) &#123; // &#26681;&#25454;&#19978;&#25991;&#20989;&#25968;&#65292;&#21028;&#26029;&#26159;&#21542;&#33021;&#22815;access&#31995;&#32479;&#22270;&#24211;&#10;            return;&#10;        &#125;&#10;        pickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum; // &#25351;&#23450;sourceType&#20026;SavedPhotosAlbum&#65292;pickerController&#23558;&#20250;&#25552;&#20379;&#19968;&#20010;&#36873;&#21462;&#31995;&#32479;&#30456;&#29255;&#30340;&#30028;&#38754;&#10;    &#125;&#10;    [self presentViewController:pickerController animated:YES completion:nil]; // &#23637;&#31034;UIImagePickerController&#10;&#125;&#10;&#10;&#10;// UIImagePickerControllerDelegate&#10;&#10;// &#36827;&#20837;UIImagePickerController&#21518;&#22914;&#26524;&#36873;&#25321;`cancel` &#23601;&#19981;&#20570;&#20160;&#20040;&#22788;&#29702;&#10;- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker &#123;&#10;    [picker dismissViewControllerAnimated:YES completion:nil];&#10;&#125;&#10;&#10;// &#36827;&#20837;UIImagePickerController&#21518;&#22914;&#26524;&#36873;&#25321;`done` &#20570;&#19968;&#20123;&#22788;&#29702;&#10;- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary&#60;NSString *, id&#62;*)info &#123;&#10;    // &#25512;&#20986;UIImagePickerController&#24182;&#22788;&#29702;&#36873;&#21462;&#30340;&#22270;&#29255;&#10;    [picker dismissViewControllerAnimated:YES completion:^&#123;&#10;        UIImage *editedImage, *originalImage;&#10;        editedImage = [info objectForKey:UIImagePickerControllerEditedImage]; // &#33719;&#21462;&#32534;&#36753;&#21518;&#30340;&#22270;&#29255;&#10;&#10;        // do something here: like take this edited image as user avatar or something else&#10;&#10;        // &#22914;&#26524;&#26159;&#30456;&#26426;&#25293;&#25668;&#30340;&#22270;&#29255;&#65292;&#37027;&#20040;&#23558;&#21407;&#22270;&#20445;&#23384;&#21040;&#31995;&#32479;&#22270;&#24211;&#10;        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) &#123;&#10;            originalImage = [info objectForKey:UIImagePickerControllerOriginalImage]; // &#33719;&#21462;&#32534;&#36753;&#20043;&#21069;&#30340;&#22270;&#29255;&#10;            UIImageWriteToSavedPhotosAlbum(originalImage, self, nil, NULL); //&#23558;&#22270;&#29255;&#20445;&#23384;&#10;        &#125;&#10;    &#125;];&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="P-S"><a href="#P-S" class="headerlink" title="P.S"></a>P.S</h2><p>本文代码都参考自<a href="https://github.com/Coding/Coding-iOS" target="_blank" rel="external">Coding-iOS</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://github.com/Coding/Coding-iOS" target="_blank" rel="external">Coding-iOS</a></li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="iOS-camera-picture-album" data-title="iOS从图库或相机获得图片" data-url="http://yoursite.com/2016/03/24/iOS-camera-picture-album/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'qcyhust'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+    <a class="social-link" href="http://weibo.com" target="_blank">
+        <i class="fa fa-2x fa-weibo"></i>
+    </a>
+
+    <a class="social-link" href="https://github.com" target="_blank">
+        <i class="fa fa-2x fa-github"></i>
+    </a>
+
+    <a class="social-link" href="/atom.xml" target="_blank">
+        <i class="fa fa-2x fa-rss"></i>
+    </a>
+
+
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="https://kheresy.wordpress.com/kinect-for-windows-v2-cpp-index/" target="_blank">博客参考</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/dustpg/article/category/2408183" target="_blank">开发系列笔记参考</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 3D Face Group. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前浏览器不支持博客完整功能。如果要获得最佳体验，请点击右上角···，复制链接，并在其它浏览器打开</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前浏览器不支持博客完整功能。如果要获得最佳体验，请点击右上角···，复制链接，并在其它浏览器打开</p>
+</div>
+
+
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+(function($) {
+    $(document).ready(function() {
+        // 隐藏禁用javascript（针对微信内置浏览器）的提示
+        $('.noscript').hide();
+
+        // 图片缩放效果
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+
+        // 给图片加上点击放大效果（materialbox插件）
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt'));
+            }).materialbox();
+
+        // 首页幻灯片
+        $('.slider').slider({
+            indicators: true,
+            full_width: true
+        });
+
+        $(".button-collapse").sideNav();
+        $(".category-menu").sideNav();
+
+        // 针对gallery post
+        $('.carousel').carousel({
+            full_width: true
+        });
+        $('.carousel-control.prev').click(function() {
+            $('.carousel').carousel('prev');
+        });
+        $('.carousel-control.next').click(function() {
+            $('.carousel').carousel('next');
+        });
+
+        // 文章目录
+        $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+        // 针对移动端做的优化：FAB按钮点击一下收回
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $('.fixed-action-btn').addClass('click-to-toggle');
+        }
+        // 回到顶部
+        $('.btn-return-top').click(function() {
+            $('body, html').animate({
+                scrollTop: 0
+            }, 500);
+        });
+
+        // 重置读书页面的Tab标签页的颜色
+        $('li.tab a').hover(function() {
+            $(this).toggleClass('text-lighten-4');
+        });
+        $('.indicator').addClass('green lighten-2');
+
+        // 添加new标签
+        $('').append('<span class="new badge pink"></span>');
+    });
+})(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</body>
+</html>
