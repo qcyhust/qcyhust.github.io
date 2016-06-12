@@ -10,8 +10,7 @@
     <title>register | 3D Face Group的小组博客</title>
     <meta name="author" content="彭敏 邱承运 刘贵 黄世杰">
     
-    <meta name="description" content="前期用Kinect获取所需三维人脸数据后，本周主要完成点云配准的工作。
-PCL环境搭建PCL(Point Cloud Library)是在吸收了前人点云相关研究基础上建立起来的大型跨平台开源C++编程库，它实现了大量点云相关的通用算法和高效数据结构，涉及到点云获取、滤波、分割、配准、检索、特征提取、">
+    <meta name="description" content="前期用Kinect获取所需三维人脸数据后，本周主要完成点云配准的工作。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -177,6 +176,7 @@ PCL环境搭建PCL(Point Cloud Library)是在吸收了前人点云相关研究�
 
             <div class="entry">
                 <p>前期用<code>Kinect</code>获取所需三维人脸数据后，本周主要完成点云配准的工作。</p>
+<a id="more"></a>
 <h2 id="PCL环境搭建"><a href="#PCL环境搭建" class="headerlink" title="PCL环境搭建"></a><strong>PCL环境搭建</strong></h2><p><code>PCL(Point Cloud Library)</code>是在吸收了前人点云相关研究基础上建立起来的大型跨平台开源<code>C++</code>编程库，它实现了大量点云相关的通用算法和高效数据结构，涉及到点云获取、滤波、分割、配准、检索、特征提取、识别、追踪、曲面重建、可视化等。支持多种操作系统平台，可在<code>Windows、Linux、Android、Mac OS Mac</code>、部分嵌入式实时系统上运行。如果说<code>OpenCV</code>是<code>2D</code>信息获取与处理的结晶，那么<code>PCL</code>就在<code>3D</code>信息获取与处理上具有同等地位。</p>
 <p>我是按照<a href="http://blog.csdn.net/otones/article/details/45138211" target="_blank" rel="external">这篇博客</a>来搭建的，博主在百度云中给出的是编译好的集成库，而官方的需要自己源码编译，基本上按照博主的流程写好自己的<code>cmake</code>文件，就可以使用<code>PCL</code>了。安装包中带有项目属性表，工程创建之后直接在项目右键中添加即可，在我的<code>VS2013</code>中，还需要手动在项目属性的链接器输入中勾选“从父级或项目默认设置继承”。</p>
 <h2 id="点云配准"><a href="#点云配准" class="headerlink" title="点云配准"></a><strong>点云配准</strong></h2><p>依据上一篇博客，调用<code>PCL</code>中的相应接口可将获取的<code>3D</code>人脸数据存储为<code>PCL</code>中的点云格式，可视化两个角度的人脸点云如下图所示：</p>
