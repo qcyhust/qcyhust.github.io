@@ -7,13 +7,18 @@
 
     
 
-    <title>归档 | 3D Face Group的小组博客</title>
+    <title>3D人脸模型重建 | 3D Face Group的小组博客</title>
     <meta name="author" content="彭敏 邱承运 刘贵 黄世杰">
+    
+    <meta name="description" content="本周完成各个模块的串联，从而得到完整的3D人脸模型。
+思路考虑到不同视角观测到的人脸信息不同，因此最基本的想法是分别获取人脸左侧、正脸、右侧三个视角的3D信息，然后融合三个视角的信息，得到完整的模型。模块的串接处理包括以下两点：
+
+依据kinect获得的头部姿态信息，分别确定三个角度范围作为左侧、正">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="3D人脸模型重建"/>
     <meta property="og:site_name" content="3D Face Group"/>
 
     
@@ -138,76 +143,86 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav>
+    <nav>
     <div class="nav-wrapper indigo lighten-1">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+
         
         
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>3D人脸模型重建</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2016年
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2016/06/14/conclusion/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-06-14T12:09:21.000Z">2016-06-14</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                3D人脸模型重建
-                            </a>
-                        
-                            <a href="/2016/06/07/register/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-06-07T06:39:29.000Z">2016-06-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                register
-                            </a>
-                        
-                            <a href="/2016/05/30/deepface/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-05-30T08:41:17.000Z">2016-05-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Acquire deep face
-                            </a>
-                        
-                            <a href="/2016/05/30/iOS-camera-picture-album/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-05-30T02:23:18.000Z">2016-05-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                iOS从图库或相机获得图片
-                            </a>
-                        
-                            <a href="/2016/05/26/初识kinect/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-05-26T08:49:08.000Z">2016-05-26</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                初识kinect
-                            </a>
-                        
-                            <a href="/2016/05/18/3DFaceReconstruction/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-05-18T08:42:30.000Z">2016-05-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                3D Face Reconstruction
-                            </a>
-                        
-                            <a href="/2016/02/23/hello-world/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-02-23T07:59:09.957Z">2016-02-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Hello World
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time datetime="2016-06-14T12:09:21.000Z"><a href="/2016/06/14/conclusion/">2016-06-14</a></time>
+
+            
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#思路"><span class="section table-of-contents-text">思路</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>本周完成各个模块的串联，从而得到完整的<code>3D</code>人脸模型。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a><strong>思路</strong></h2><p>考虑到不同视角观测到的人脸信息不同，因此最基本的想法是分别获取人脸左侧、正脸、右侧三个视角的<code>3D</code>信息，然后融合三个视角的信息，得到完整的模型。模块的串接处理包括以下两点：</p>
+<ul>
+<li><p>依据<code>kinect</code>获得的头部姿态信息，分别确定三个角度范围作为左侧、正脸、右侧的判断，保存相应角度范围下的一帧作为该视角的<code>3D</code>人脸信息。</p>
+</li>
+<li><p>由于<code>ICP</code>配准算法依赖于两幅初始点云有较多的重叠，因此我们采用左侧脸与正脸、右侧脸与正脸分别配准融合之后，再对两个中间结果进行第三次配准融合得到最终的<code>3D</code>模型的策略。</p>
+</li>
+</ul>
+<p>完整的<code>demo</code>演示见以下视频链接。(<a href="http://v.youku.com/v_show/id_XMTYwNzU5NjM2NA==.html" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTYwNzU5NjM2NA==.html</a>)</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="conclusion" data-title="3D人脸模型重建" data-url="http://yoursite.com/2016/06/14/conclusion/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'qcyhust'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
 
 
 </div>
