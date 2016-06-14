@@ -10,10 +10,7 @@
     <title>3D人脸模型重建 | 3D Face Group的小组博客</title>
     <meta name="author" content="彭敏 邱承运 刘贵 黄世杰">
     
-    <meta name="description" content="本周完成各个模块的串联，从而得到完整的3D人脸模型。
-思路考虑到不同视角观测到的人脸信息不同，因此最基本的想法是分别获取人脸左侧、正脸、右侧三个视角的3D信息，然后融合三个视角的信息，得到完整的模型。模块的串接处理包括以下两点：
-
-依据kinect获得的头部姿态信息，分别确定三个角度范围作为左侧、正">
+    <meta name="description" content="本周完成各个模块的串联，从而得到完整的3D人脸模型。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -179,6 +176,7 @@
 
             <div class="entry">
                 <p>本周完成各个模块的串联，从而得到完整的<code>3D</code>人脸模型。</p>
+<a id="more"></a>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a><strong>思路</strong></h2><p>考虑到不同视角观测到的人脸信息不同，因此最基本的想法是分别获取人脸左侧、正脸、右侧三个视角的<code>3D</code>信息，然后融合三个视角的信息，得到完整的模型。模块的串接处理包括以下两点：</p>
 <ul>
 <li><p>依据<code>kinect</code>获得的头部姿态信息，分别确定三个角度范围作为左侧、正脸、右侧的判断，保存相应角度范围下的一帧作为该视角的<code>3D</code>人脸信息。</p>
